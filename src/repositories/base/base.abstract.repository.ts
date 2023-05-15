@@ -9,7 +9,7 @@ export abstract class BaseAbstractRepository<T> implements BaseInterfaceReposito
         this.entity = entity;
     }
 
-    public async create(data: T): Promise<T> {
+    public async save(data: T | any): Promise<T> {
         return await this.entity.save(data);
     }
 
@@ -29,7 +29,7 @@ export abstract class BaseAbstractRepository<T> implements BaseInterfaceReposito
         return await this.entity.find();
     }
 
-    public async remove(id: number): Promise<DeleteResult> {
+    public async delete(id: number): Promise<DeleteResult> {
         return await this.entity.delete(id);
     }
 }
