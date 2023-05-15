@@ -10,7 +10,7 @@ export const TypeOrmConfig = () => ({
         username: process.env.DATABASE_USERNAME,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
-        entities: [__dirname + '/**/*.entities{.ts,.js}'],
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         synchronize: Boolean(process.env.DATABASE_SYNCHRONIZE),
         connectTimeout: parseInt(process.env.DATABASE_CONNECTION_TIME_OUT),
         // acquireTimeout: parseInt(process.env.DATABASE_ACQUIRE_TIME_OUT),
