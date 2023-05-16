@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as morgan from 'morgan';
 
 import { AppModule } from './app.module';
-import { APIPrefix, SWAGGER } from './common/common';
+import { APIPrefix } from './common/common';
 import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
+import { setupSwagger } from './utils/setup-swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -19,13 +19,7 @@ async function bootstrap() {
 
     app.setGlobalPrefix(APIPrefix.Version);
 
-    const config = new DocumentBuilder()
-        .setTitle('Marketplace API')
-        .setDescription('Aplicación para la venta de Gadgets')
-        .setVersion(SWAGGER.Version)
-        .build();
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('docs', app, document);
+    setupSwagger(app);
 
     console.log(
         'listen',
