@@ -40,7 +40,7 @@ export class CategoryRepository
         if (orderBy)
             queryBuilder.orderBy(`${this.entityName}.${orderBy}`, pageOptionsDto.order);
 
-        queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.take);
+        queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.size);
 
         const itemCount = await queryBuilder.getCount();
         const { entities } = await queryBuilder.getRawAndEntities();
