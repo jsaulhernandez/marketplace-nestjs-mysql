@@ -5,3 +5,8 @@ export enum APIPrefix {
 export enum SWAGGER {
     Version = '1.0',
 }
+
+export enum Order {
+    ASC = 'ASC',
+    DESC = 'DESC',
+}

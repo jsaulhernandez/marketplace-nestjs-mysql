@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as morgan from 'morgan';
 
@@ -10,6 +11,8 @@ import { TransformInterceptor } from './common/interceptors/transform/transform.
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.useGlobalInterceptors(new TransformInterceptor());
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
     app.use(morgan('dev'));
 
     const configService = app.get(ConfigService);
