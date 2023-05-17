@@ -1,10 +1,12 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
+import { PageMetaDto } from 'src/dto/pagination/page-meta.dto';
+
 export class CustomResponse<T> {
     @ApiProperty()
-    content: T | T[];
+    content: T;
     @ApiPropertyOptional()
-    page?: T;
+    page?: PageMetaDto;
 }
 
 export class Response<T extends Object> {
