@@ -12,7 +12,6 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { CategoryServiceInterface } from '../services/category.service.interface';
 
-import { ApiPaginatedResponse } from 'src/common/decorators/api-paginated-response.decorator';
 import { ApiResponse } from 'src/common/decorators/api-response.decorator';
 
 import { CategoryDTO } from 'src/dto/category.dto';
@@ -31,7 +30,7 @@ export class CategoryController {
     ) {}
 
     @Get()
-    @ApiPaginatedResponse(CategoryDTO)
+    @ApiResponse(CategoryDTO)
     async index(
         @Query() pageOptionsDto: PageOptionsDto,
         @Query('filter') filter: string = '',
