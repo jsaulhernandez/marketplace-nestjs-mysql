@@ -1,9 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CustomResponse<T> {
     @ApiProperty()
     content: T | T[];
-    @ApiProperty()
+    @ApiPropertyOptional()
     page?: T;
 }
 
