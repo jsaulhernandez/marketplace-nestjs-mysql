@@ -12,11 +12,14 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { CategoryServiceInterface } from '../services/category.service.interface';
 
-import { CategoryModel } from 'src/entities/category.entity';
+import { ApiPaginatedResponse } from 'src/common/decorators/api-paginated-response.decorator';
+import { ApiResponse } from 'src/common/decorators/api-response.decorator';
+
 import { CategoryDTO } from 'src/dto/category.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
-import { ApiPaginatedResponse } from 'src/common/decorators/api-paginated-response.decorator';
+
+import { PrefixWeb } from 'src/common/const';
 
 @ApiTags('Categories')
 @Controller('category')
@@ -37,14 +40,15 @@ export class CategoryController {
     }
 
     @Post()
-    async create(@Body() category: CategoryDTO): Promise<CategoryModel> {
+    async create(@Body() category: CategoryDTO): Promise<CategoryDTO> {
         return await this.categoryService.create(category);
     }
 
     /**
      * EP WEB
      */
-    @Get('/web')
+    @Get(`/${PrefixWeb}`)
+    @ApiResponse(CategoryDTO)
     async getCategories(): Promise<CategoryDTO[]> {
         return await this.categoryService.getCategories();
     }

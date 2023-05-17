@@ -9,7 +9,7 @@ export interface CategoryServiceInterface {
         filter: string,
     ): Promise<PageDto<CategoryDTO>>;
 
-    create(category: CategoryDTO): Promise<CategoryModel>;
+    create(category: CategoryDTO): Promise<CategoryDTO>;
 
     getCategories(): Promise<CategoryDTO[]>;
 }

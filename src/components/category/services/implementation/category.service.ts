@@ -25,7 +25,7 @@ export class CategoryService implements CategoryServiceInterface {
         return this.categoryRepository.Paginate(pageOptionsDto, filter);
     }
 
-    async create(category: CategoryDTO): Promise<CategoryModel> {
+    async create(category: CategoryDTO): Promise<CategoryDTO> {
         return this.categoryRepository.save(category);
     }
 
