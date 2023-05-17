@@ -5,12 +5,12 @@ import * as morgan from 'morgan';
 
 import { AppModule } from './app.module';
 import { APIPrefix } from './common/common';
-import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
+//import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
 import { setupSwagger } from './utils/setup-swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    app.useGlobalInterceptors(new TransformInterceptor());
+    //app.useGlobalInterceptors(new TransformInterceptor());
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
     app.use(morgan('dev'));

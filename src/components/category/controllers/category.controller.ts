@@ -10,15 +10,17 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
+import { ApiResponse } from 'src/common/decorators/api-response.decorator';
+import { PrefixWeb } from 'src/common/const';
+
 import { CategoryServiceInterface } from '../services/category.service.interface';
 
-import { ApiResponse } from 'src/common/decorators/api-response.decorator';
-
+import { ResponseDTO } from 'src/dto/response/response.dto';
 import { CategoryDTO } from 'src/dto/category.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
-import { PrefixWeb } from 'src/common/const';
+import { Response } from 'src/utils/response.util';
 
 @ApiTags('Categories')
 @Controller('category')
@@ -30,17 +32,19 @@ export class CategoryController {
     ) {}
 
     @Get()
-    @ApiResponse(CategoryDTO)
+    @ApiResponse(CategoryDTO, PageDto)
     async index(
         @Query() pageOptionsDto: PageOptionsDto,
         @Query('filter') filter: string = '',
-    ): Promise<PageDto<CategoryDTO>> {
-        return await this.categoryService.Paginate(pageOptionsDto, filter);
+    ): Promise<ResponseDTO<PageDto<CategoryDTO>>> {
+        const result = await this.categoryService.Paginate(pageOptionsDto, filter);
+        return new Response<PageDto<CategoryDTO>>().ok(result);
     }
 
     @Post()
-    async create(@Body() category: CategoryDTO): Promise<CategoryDTO> {
-        return await this.categoryService.create(category);
+    async create(@Body() category: CategoryDTO): Promise<ResponseDTO<CategoryDTO>> {
+        const result = await this.categoryService.create(category);
+        return new Response<CategoryDTO>().created(result);
     }
 
     /**
@@ -48,7 +52,8 @@ export class CategoryController {
      */
     @Get(`/${PrefixWeb}`)
     @ApiResponse(CategoryDTO)
-    async getCategories(): Promise<CategoryDTO[]> {
-        return await this.categoryService.getCategories();
+    async getCategories(): Promise<ResponseDTO<CategoryDTO[]>> {
+        const result = await this.categoryService.getCategories();
+        return new Response<CategoryDTO[]>().ok(result);
     }
 }

@@ -1,14 +1,14 @@
-import { Module, Scope } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+//import { APP_INTERCEPTOR } from '@nestjs/core';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmConfig } from './database/config/orm.config';
 import { CategoryModule } from './components/category/category.module';
-import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
+//import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
 
 @Module({
     imports: [
@@ -27,11 +27,11 @@ import { TransformInterceptor } from './common/interceptors/transform/transform.
     controllers: [AppController],
     providers: [
         AppService,
-        {
-            provide: APP_INTERCEPTOR,
-            scope: Scope.REQUEST,
-            useClass: TransformInterceptor,
-        },
+        // {
+        //     provide: APP_INTERCEPTOR,
+        //     scope: Scope.REQUEST,
+        //     useClass: TransformInterceptor,
+        // },
     ],
 })
 export class AppModule {}
