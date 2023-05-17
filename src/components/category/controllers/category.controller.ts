@@ -40,4 +40,12 @@ export class CategoryController {
     async create(@Body() category: CategoryDTO): Promise<CategoryModel> {
         return await this.categoryService.create(category);
     }
+
+    /**
+     * EP WEB
+     */
+    @Get('/web')
+    async getCategories(): Promise<CategoryDTO[]> {
+        return await this.categoryService.getCategories();
+    }
 }

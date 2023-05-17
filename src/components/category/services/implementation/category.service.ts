@@ -28,4 +28,8 @@ export class CategoryService implements CategoryServiceInterface {
     async create(category: CategoryDTO): Promise<CategoryModel> {
         return this.categoryRepository.save(category);
     }
+
+    async getCategories(): Promise<CategoryDTO[]> {
+        return this.categoryRepository.findByCondition({ status: 1 });
+    }
 }

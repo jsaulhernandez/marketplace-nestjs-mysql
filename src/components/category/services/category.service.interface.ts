@@ -10,4 +10,6 @@ export interface CategoryServiceInterface {
     ): Promise<PageDto<CategoryDTO>>;
 
     create(category: CategoryDTO): Promise<CategoryModel>;
+
+    getCategories(): Promise<CategoryDTO[]>;
 }
