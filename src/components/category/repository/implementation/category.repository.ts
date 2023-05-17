@@ -10,6 +10,7 @@ import { CategoryModel } from 'src/entities/category.entity';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageMetaDto } from 'src/dto/pagination/page-meta.dto';
+import { CategoryDTO } from 'src/dto/category.dto';
 
 @Injectable()
 export class CategoryRepository
@@ -29,7 +30,7 @@ export class CategoryRepository
         pageOptionsDto: PageOptionsDto,
         filter: string,
         orderBy: string = 'id',
-    ): Promise<PageDto<CategoryModel>> {
+    ): Promise<PageDto<CategoryDTO>> {
         const queryBuilder = this.categoryRepository.createQueryBuilder(this.entityName);
 
         if (filter)

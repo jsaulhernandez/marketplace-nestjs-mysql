@@ -28,11 +28,11 @@ export class CategoryController {
     ) {}
 
     @Get()
-    @ApiPaginatedResponse(CategoryModel)
+    @ApiPaginatedResponse(CategoryDTO)
     async index(
         @Query() pageOptionsDto: PageOptionsDto,
         @Query('filter') filter: string = '',
-    ): Promise<PageDto<CategoryModel>> {
+    ): Promise<PageDto<CategoryDTO>> {
         return await this.categoryService.Paginate(pageOptionsDto, filter);
     }
 

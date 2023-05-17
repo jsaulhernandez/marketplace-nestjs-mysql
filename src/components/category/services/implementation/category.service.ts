@@ -19,7 +19,7 @@ export class CategoryService implements CategoryServiceInterface {
     async Paginate(
         pageOptionsDto: PageOptionsDto,
         filter: string,
-    ): Promise<PageDto<CategoryModel>> {
+    ): Promise<PageDto<CategoryDTO>> {
         filter = cleanFilter(filter);
 
         return this.categoryRepository.Paginate(pageOptionsDto, filter);

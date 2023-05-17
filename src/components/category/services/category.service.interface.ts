@@ -7,7 +7,7 @@ export interface CategoryServiceInterface {
     Paginate(
         pageOptionsDto: PageOptionsDto,
         filter: string,
-    ): Promise<PageDto<CategoryModel>>;
+    ): Promise<PageDto<CategoryDTO>>;
 
     create(category: CategoryDTO): Promise<CategoryModel>;
 }
