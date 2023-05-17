@@ -1,10 +1,19 @@
-export interface Response<T extends Object> {
-    statusCode: number;
-    message: string;
-    response: CustomResponse<T>;
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CustomResponse<T> {
+    @ApiProperty()
+    content: T | T[];
+    @ApiProperty()
+    page?: T;
 }
 
-export interface CustomResponse<T> {
-    content: T | T[];
-    page?: T;
+export class Response<T extends Object> {
+    @ApiProperty()
+    statusCode: number;
+    @ApiProperty()
+    message: string;
+    @ApiProperty({
+        type: () => CustomResponse,
+    })
+    response: CustomResponse<T>;
 }

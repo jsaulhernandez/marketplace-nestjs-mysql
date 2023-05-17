@@ -18,7 +18,7 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
                 response: {
                     content:
                         data.response?.content?.content || data.response?.content || data,
-                    page: data.response?.content?.meta,
+                    page: data.response?.content?.page,
                 },
             })),
         );

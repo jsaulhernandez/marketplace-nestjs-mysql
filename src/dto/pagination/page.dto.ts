@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray } from 'class-validator';
+
 import { PageMetaDto } from './page-meta.dto';
 
 export class PageDto<T> {
@@ -8,10 +9,10 @@ export class PageDto<T> {
     readonly content: T[];
 
     @ApiProperty({ type: () => PageMetaDto })
-    readonly meta: PageMetaDto;
+    readonly page: PageMetaDto;
 
-    constructor(content: T[], meta: PageMetaDto) {
+    constructor(content: T[], page: PageMetaDto) {
         this.content = content;
-        this.meta = meta;
+        this.page = page;
     }
 }
