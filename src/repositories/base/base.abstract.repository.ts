@@ -17,8 +17,8 @@ export abstract class BaseAbstractRepository<T> implements BaseInterfaceReposito
         return await this.entity.findOneBy({ id: id } as unknown as FindOptionsWhere<T>);
     }
 
-    public async findByCondition(filterCondition: any): Promise<T> {
-        return await this.entity.findOne({ where: filterCondition });
+    public async findByCondition(filterCondition: any): Promise<T[]> {
+        return await this.entity.findBy(filterCondition);
     }
 
     public async findWithRelations(relations: any): Promise<T[]> {

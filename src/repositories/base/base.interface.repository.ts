@@ -5,7 +5,7 @@ export interface BaseInterfaceRepository<T> {
 
     findOneById(id: number): Promise<T>;
 
-    findByCondition(filterCondition: any): Promise<T>;
+    findByCondition(filterCondition: any): Promise<T[]>;
 
     findAll(): Promise<T[]>;
 
