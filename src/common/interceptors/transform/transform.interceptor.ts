@@ -17,8 +17,11 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
                 message: 'Operation carried out successfully!',
                 response: {
                     content:
-                        data.response?.content?.content || data.response?.content || data,
-                    page: data.response?.content?.page,
+                        typeof data?.response?.content?.content !== 'undefined' ||
+                        typeof data?.response?.content !== 'undefined'
+                            ? data?.response?.content?.content || data?.response?.content
+                            : data,
+                    page: data?.response?.content?.page,
                 },
             })),
         );
