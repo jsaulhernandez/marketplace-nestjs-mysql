@@ -22,6 +22,6 @@ export class ResponseDTO<T extends Object> {
         this.status = status;
         this.statusCode = statusCode;
         this.message = message;
-        this.response = data['content'] ? data : { content: data };
+        this.response = data['data'] ? data : { data: data };
     }
 }
