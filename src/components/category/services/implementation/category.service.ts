@@ -4,7 +4,6 @@ import { CategoryServiceInterface } from '../category.service.interface';
 import { CategoryRepositoryInterface } from '../../repository/category.repository.interface';
 
 import { CategoryDTO } from 'src/dto/category.dto';
-import { CategoryModel } from 'src/entities/category.entity';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { cleanFilter } from 'src/utils/strings.utils';
