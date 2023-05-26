@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { TypeOrmConfig } from './database/config/orm.config';
 import { CategoryModule } from './components/category/category.module';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
+import { PayMethodModule } from './components/pay-method/pay-method.module';
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import { CategoryModule } from './components/category/category.module';
             inject: [ConfigService],
         }),
         CategoryModule,
+        PayMethodModule,
     ],
     controllers: [AppController],
     providers: [
