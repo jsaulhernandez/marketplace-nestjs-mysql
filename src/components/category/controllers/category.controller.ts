@@ -50,7 +50,7 @@ export class CategoryController {
     /**
      * EP WEB
      */
-    @Get(`/${PrefixWeb}`)
+    @Get(`/${PrefixWeb}/active`)
     @ApiResponse(CategoryDTO)
     async getCategories(): Promise<ResponseDTO<CategoryDTO[]>> {
         const result = await this.categoryService.getCategories();
