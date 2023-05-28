@@ -36,16 +36,16 @@ export class Product {
     detail: string;
     @Column({ nullable: false })
     specification: string;
-    @ManyToMany((type) => MemorySize)
+    @ManyToMany((type) => MemorySize, { cascade: true })
     @JoinTable()
     memorySize: MemorySize[];
-    @ManyToMany((type) => Color)
+    @ManyToMany((type) => Color, { cascade: true })
     @JoinTable()
     color: Color[];
-    @ManyToMany((type) => Processor)
+    @ManyToMany((type) => Processor, { cascade: true })
     @JoinTable()
     processor: Processor[];
-    @ManyToMany((type) => PayMethod)
+    @ManyToMany((type) => PayMethod, { cascade: true })
     @JoinTable()
     payMethod: PayMethod[];
     @OneToOne((type) => CategoryModel, { nullable: false })
