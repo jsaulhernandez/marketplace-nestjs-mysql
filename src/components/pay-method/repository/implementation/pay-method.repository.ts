@@ -5,18 +5,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PayMethodRepositoryInterface } from '../pay-method.repository.interface';
 import { BaseAbstractRepository } from 'src/repositories/base/base.abstract.repository';
 
-import { PayMethod } from 'src/entities/pay-method.entity';
+import { PayMethodModel } from 'src/entities/pay-method.entity';
 
 @Injectable()
 export class PayMethodRepository
-    extends BaseAbstractRepository<PayMethod>
+    extends BaseAbstractRepository<PayMethodModel>
     implements PayMethodRepositoryInterface
 {
     entityName: string = 'mkp_pay_method';
 
     constructor(
-        @InjectRepository(PayMethod)
-        private payMethodRepository: Repository<PayMethod>,
+        @InjectRepository(PayMethodModel)
+        private payMethodRepository: Repository<PayMethodModel>,
     ) {
         super(payMethodRepository);
     }

@@ -8,14 +8,14 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { MemorySize } from './memory-size.entity';
-import { Color } from './color.entity';
-import { Processor } from './processor.entity';
-import { PayMethod } from './pay-method.entity';
+import { MemorySizeModel } from './memory-size.entity';
+import { ColorModel } from './color.entity';
+import { ProcessorModel } from './processor.entity';
+import { PayMethodModel } from './pay-method.entity';
 import { CategoryModel } from './category.entity';
 
 @Entity({ name: 'mkp_product' })
-export class Product {
+export class ProductModel {
     @PrimaryGeneratedColumn()
     id: number;
     @Column({ nullable: false })
@@ -36,18 +36,18 @@ export class Product {
     detail: string;
     @Column({ nullable: false })
     specification: string;
-    @ManyToMany((type) => MemorySize, { cascade: true })
+    @ManyToMany((type) => MemorySizeModel, { cascade: true })
     @JoinTable()
-    memorySize: MemorySize[];
-    @ManyToMany((type) => Color, { cascade: true })
+    memorySize: MemorySizeModel[];
+    @ManyToMany((type) => ColorModel, { cascade: true })
     @JoinTable()
-    color: Color[];
-    @ManyToMany((type) => Processor, { cascade: true })
+    color: ColorModel[];
+    @ManyToMany((type) => ProcessorModel, { cascade: true })
     @JoinTable()
-    processor: Processor[];
-    @ManyToMany((type) => PayMethod, { cascade: true })
+    processor: ProcessorModel[];
+    @ManyToMany((type) => PayMethodModel, { cascade: true })
     @JoinTable()
-    payMethod: PayMethod[];
+    payMethod: PayMethodModel[];
     @OneToOne((type) => CategoryModel, { nullable: false })
     @JoinColumn()
     category: CategoryModel;

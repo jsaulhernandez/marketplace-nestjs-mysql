@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'mkp_memory-size' })
-export class MemorySize {
+export class MemorySizeModel {
     @PrimaryGeneratedColumn()
     id: number;
     @Column({ nullable: false })
