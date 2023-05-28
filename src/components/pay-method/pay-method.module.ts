@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { PayMethodModel } from 'src/entities/pay-method.entity';
+import { PayMethod } from 'src/entities/pay-method.entity';
 
 import { PayMethodController } from './controller/pay-method.controller';
 
@@ -9,7 +9,7 @@ import { PayMethodRepository } from './repository/implementation/pay-method.repo
 import { PayMethodService } from './service/implementation/pay-method.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([PayMethodModel])],
+    imports: [TypeOrmModule.forFeature([PayMethod])],
     controllers: [PayMethodController],
     providers: [
         {

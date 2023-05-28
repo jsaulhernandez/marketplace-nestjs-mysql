@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'mkp_pay_method' })
-export class PayMethodModel {
+export class PayMethod {
     @PrimaryGeneratedColumn()
     id: number;
     @Column({ nullable: false })
     name: string;
-    @Column({ nullable: false })
+    @Column({ nullable: true })
     image: string;
     @Column({ nullable: false })
     status: number;
