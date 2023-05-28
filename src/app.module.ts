@@ -10,6 +10,10 @@ import { TypeOrmConfig } from './database/config/orm.config';
 import { CategoryModule } from './components/category/category.module';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
 import { PayMethodModule } from './components/pay-method/pay-method.module';
+import { ColorModule } from './components/color/color.module';
+import { MemorySizeModule } from './components/memory-size/memory-size.module';
+import { ProcessorModule } from './components/processor/processor.module';
+import { ProductModule } from './components/product/product.module';
 
 @Module({
     imports: [
@@ -25,6 +29,10 @@ import { PayMethodModule } from './components/pay-method/pay-method.module';
         }),
         CategoryModule,
         PayMethodModule,
+        ColorModule,
+        MemorySizeModule,
+        ProcessorModule,
+        ProductModule,
     ],
     controllers: [AppController],
     providers: [
