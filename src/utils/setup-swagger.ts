@@ -1,5 +1,6 @@
 import type { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 import { SWAGGER } from 'src/common/common';
 
 export function setupSwagger(app: INestApplication): void {
