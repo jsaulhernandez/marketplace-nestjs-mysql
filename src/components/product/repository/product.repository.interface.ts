@@ -9,6 +9,7 @@ export interface ProductRepositoryInterface
     extends BaseInterfaceRepository<ProductModel> {
     PaginateWeb(
         pageOptionsDto: PageOptionsDto,
+        search: string,
         category: number,
         startPrice: number,
         endPrice: number,

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Between, MoreThan, Repository } from 'typeorm';
+import { Between, Like, MoreThan, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { ProductRepositoryInterface } from '../product.repository.interface';
@@ -27,6 +27,7 @@ export class ProductRepository
 
     public async PaginateWeb(
         pageOptionsDto: PageOptionsDto,
+        search: string,
         category: number,
         startPrice: number,
         endPrice: number,
@@ -36,10 +37,13 @@ export class ProductRepository
         const [entities, itemCount] = await this.productRepository.findAndCount({
             where: [
                 {
+                    title: Like(`%${search}%`),
+                },
+                {
                     category: {
                         id:
                             category === 0
-                                ? withoutFilters
+                                ? withoutFilters && search === ''
                                     ? MoreThan(category)
                                     : category
                                 : category,
@@ -48,7 +52,7 @@ export class ProductRepository
                 {
                     price:
                         startPrice === 0 && endPrice === 0
-                            ? withoutFilters
+                            ? withoutFilters && search === ''
                                 ? MoreThan(startPrice)
                                 : startPrice
                             : Between(startPrice, endPrice),
@@ -57,7 +61,7 @@ export class ProductRepository
                     payMethod: {
                         id:
                             payMethod === 0
-                                ? withoutFilters
+                                ? withoutFilters && search === ''
                                     ? MoreThan(payMethod)
                                     : payMethod
                                 : payMethod,

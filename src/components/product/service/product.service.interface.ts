@@ -5,6 +5,7 @@ import { ProductDTO } from 'src/dto/product.dto';
 export interface ProductServiceInterface {
     PaginateWeb(
         pageOptionsDto: PageOptionsDto,
+        search: string,
         category: number,
         startPrice: number,
         endPrice: number,

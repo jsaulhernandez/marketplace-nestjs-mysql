@@ -35,6 +35,7 @@ export class ProductController {
     @ApiResponse(ProductDTO, PageDto)
     async PaginateWeb(
         @Query() pageOptionsDto: PageOptionsDto,
+        @Query('search') search: string = '',
         @Query('category') category: number = 0,
         @Query('startPrice') startPrice: number = 0,
         @Query('endPrice') endPrice: number = 0,
@@ -42,6 +43,7 @@ export class ProductController {
     ): Promise<ResponseDTO<PageDto<ProductDTO>>> {
         const result = await this.productService.PaginateWeb(
             pageOptionsDto,
+            search,
             category,
             startPrice,
             endPrice,

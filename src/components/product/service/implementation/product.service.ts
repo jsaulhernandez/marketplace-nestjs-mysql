@@ -16,6 +16,7 @@ export class ProductService implements ProductServiceInterface {
 
     async PaginateWeb(
         pageOptionsDto: PageOptionsDto,
+        search: string,
         category: number,
         startPrice: number,
         endPrice: number,
@@ -31,6 +32,7 @@ export class ProductService implements ProductServiceInterface {
 
         return this.productRepository.PaginateWeb(
             pageOptionsDto,
+            search,
             category,
             startPrice,
             endPrice,
