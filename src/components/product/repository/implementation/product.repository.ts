@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Between, MoreThan, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { ProductRepositoryInterface } from '../product.repository.interface';
@@ -31,36 +31,57 @@ export class ProductRepository
         startPrice: number,
         endPrice: number,
         payMethod: number,
-        orderBy: string = 'id',
+        withoutFilters: boolean,
     ): Promise<PageDto<ProductDTO>> {
-        const queryBuilder = this.productRepository
-            .createQueryBuilder(this.entityName)
-            .innerJoinAndSelect(`${this.entityName}.memorySize`, 'm')
-            .innerJoinAndSelect(`${this.entityName}.color`, 'c')
-            .innerJoinAndSelect(`${this.entityName}.processor`, 'p')
-            .innerJoinAndSelect(`${this.entityName}.payMethod`, 'pm')
-            .innerJoinAndSelect(`${this.entityName}.category`, 'cg');
-
-        if (category || startPrice || endPrice || payMethod)
-            queryBuilder
-                .where('cg.id = :category', {
-                    category: category,
-                })
-                .orWhere(`${this.entityName}.price BETWEEN :startPrice AND :endPrice`, {
-                    startPrice: startPrice,
-                    endPrice: endPrice,
-                })
-                .orWhere('pm.id = :method', {
-                    method: payMethod,
-                });
-
-        if (orderBy)
-            queryBuilder.orderBy(`${this.entityName}.${orderBy}`, pageOptionsDto.order);
-
-        queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.size);
-
-        const itemCount = await queryBuilder.getCount();
-        const { entities } = await queryBuilder.getRawAndEntities();
+        const [entities, itemCount] = await this.productRepository.findAndCount({
+            where: [
+                {
+                    category: {
+                        id:
+                            category === 0
+                                ? withoutFilters
+                                    ? MoreThan(category)
+                                    : category
+                                : category,
+                    },
+                },
+                {
+                    price:
+                        startPrice === 0 && endPrice === 0
+                            ? withoutFilters
+                                ? MoreThan(startPrice)
+                                : startPrice
+                            : Between(startPrice, endPrice),
+                },
+                {
+                    payMethod: {
+                        id:
+                            payMethod === 0
+                                ? withoutFilters
+                                    ? MoreThan(payMethod)
+                                    : payMethod
+                                : payMethod,
+                    },
+                },
+            ],
+            select: {
+                memorySize: { id: true, value: true },
+                color: { id: true, value: true },
+                processor: { id: true, name: true },
+                payMethod: { id: true, name: true },
+                category: { name: true },
+            },
+            order: { id: pageOptionsDto.order },
+            relations: {
+                memorySize: true,
+                color: true,
+                processor: true,
+                payMethod: true,
+                category: true,
+            },
+            skip: pageOptionsDto.skip,
+            take: pageOptionsDto.size,
+        });
 
         const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 

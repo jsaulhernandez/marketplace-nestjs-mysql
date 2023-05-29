@@ -13,6 +13,6 @@ export interface ProductRepositoryInterface
         startPrice: number,
         endPrice: number,
         payMethod: number,
-        orderBy?: string,
+        withoutFilters: boolean,
     ): Promise<PageDto<ProductDTO>>;
 }

@@ -26,12 +26,16 @@ export class ProductService implements ProductServiceInterface {
         endPrice = cleanFilterNumber(endPrice);
         payMethod = cleanFilterNumber(payMethod);
 
+        const withoutFilters: boolean =
+            category !== 0 || (startPrice !== 0 && endPrice !== 0) || payMethod !== 0;
+
         return this.productRepository.PaginateWeb(
             pageOptionsDto,
             category,
             startPrice,
             endPrice,
             payMethod,
+            !withoutFilters,
         );
     }
 }
