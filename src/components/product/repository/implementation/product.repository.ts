@@ -37,7 +37,7 @@ export class ProductRepository
         const [entities, itemCount] = await this.productRepository.findAndCount({
             where: [
                 {
-                    title: Like(`%${search}%`),
+                    title: search !== '' ? Like(`%${search}%`) : search,
                 },
                 {
                     category: {
