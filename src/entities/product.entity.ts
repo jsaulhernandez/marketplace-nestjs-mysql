@@ -22,8 +22,6 @@ export class ProductModel {
     name: string;
     @Column({ nullable: false })
     title: string;
-    @Column({ nullable: false })
-    description: string;
     @Column({ nullable: true })
     image: string;
     @Column({ nullable: false })

@@ -14,8 +14,6 @@ export class ProductDTO {
     @ApiProperty()
     title: string;
     @ApiProperty()
-    description: string;
-    @ApiProperty()
     image: string;
     @ApiProperty()
     stock: number;
