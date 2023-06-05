@@ -4,6 +4,8 @@ import {
     JoinColumn,
     JoinTable,
     ManyToMany,
+    ManyToOne,
+    OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -46,7 +48,7 @@ export class ProductModel {
     @ManyToMany((type) => PayMethodModel, { cascade: true })
     @JoinTable()
     payMethod: PayMethodModel[];
-    @OneToOne((type) => CategoryModel, { nullable: false })
+    @ManyToOne((type) => CategoryModel, { nullable: false })
     @JoinColumn()
     category: CategoryModel;
 }
