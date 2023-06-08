@@ -7,6 +7,7 @@ import { AppModule } from './app.module';
 import { APIPrefix } from './common/common';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
 import { setupSwagger } from './utils/setup-swagger';
+import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter.exception';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -14,6 +15,7 @@ async function bootstrap() {
         origin: true,
     });
     //app.useGlobalInterceptors(new TransformInterceptor());
+    app.useGlobalFilters(new CustomExceptionFilter());
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
     app.use(morgan('dev'));
