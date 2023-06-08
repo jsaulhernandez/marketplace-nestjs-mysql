@@ -3,7 +3,7 @@ import { DeleteResult } from 'typeorm';
 export interface BaseInterfaceRepository<T> {
     save(data: T | any): Promise<T>;
 
-    findOneById(id: number): Promise<T>;
+    findOneBy(conditions: any): Promise<T>;
 
     findByCondition(filterCondition: any): Promise<T[]>;
 
