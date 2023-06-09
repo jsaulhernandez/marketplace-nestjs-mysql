@@ -14,6 +14,16 @@ export class ProductService implements ProductServiceInterface {
         private productRepository: ProductRepositoryInterface,
     ) {}
 
+    async Paginate(
+        pageOptionsDto: PageOptionsDto,
+        search: string,
+        category: number,
+    ): Promise<PageDto<ProductDTO>> {
+        category = cleanFilterNumber(category);
+
+        return this.productRepository.Paginate(pageOptionsDto, search, category);
+    }
+
     async PaginateWeb(
         pageOptionsDto: PageOptionsDto,
         search: string,

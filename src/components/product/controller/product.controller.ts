@@ -28,6 +28,22 @@ export class ProductController {
         private readonly productService: ProductServiceInterface,
     ) {}
 
+    @Get()
+    @ApiResponse(ProductDTO, PageDto)
+    async Paginate(
+        @Query() pageOptionsDto: PageOptionsDto,
+        @Query('search') search: string = '',
+        @Query('category') category: number = 0,
+    ): Promise<ResponseDTO<PageDto<ProductDTO>>> {
+        const result = await this.productService.Paginate(
+            pageOptionsDto,
+            search,
+            category,
+        );
+
+        return new Response<PageDto<ProductDTO>>().ok(result);
+    }
+
     /**
      * EP WEB
      */
@@ -49,6 +65,7 @@ export class ProductController {
             endPrice,
             payMethod,
         );
+
         return new Response<PageDto<ProductDTO>>().ok(result);
     }
 }

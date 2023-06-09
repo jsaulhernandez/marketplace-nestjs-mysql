@@ -25,6 +25,47 @@ export class ProductRepository
         super(productRepository);
     }
 
+    public async Paginate(
+        pageOptionsDto: PageOptionsDto,
+        search: string,
+        category: number,
+    ): Promise<PageDto<ProductDTO>> {
+        const [entities, itemCount] = await this.productRepository.findAndCount({
+            where: [
+                {
+                    title: search !== '' ? Like(`%${search}%`) : search,
+                },
+                {
+                    name: search !== '' ? Like(`%${search}%`) : search,
+                },
+                {
+                    category: {
+                        id:
+                            category === 0
+                                ? search === ''
+                                    ? MoreThan(category)
+                                    : category
+                                : category,
+                    },
+                },
+            ],
+            order: { id: pageOptionsDto.order },
+            relations: {
+                memorySize: true,
+                color: true,
+                processor: true,
+                payMethod: true,
+                category: true,
+            },
+            skip: pageOptionsDto.skip,
+            take: pageOptionsDto.size,
+        });
+
+        const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+        return new PageDto(entities, pageMetaDto);
+    }
+
     public async PaginateWeb(
         pageOptionsDto: PageOptionsDto,
         search: string,

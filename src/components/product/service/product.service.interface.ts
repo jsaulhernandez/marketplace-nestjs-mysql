@@ -3,6 +3,12 @@ import { PageDto } from 'src/dto/pagination/page.dto';
 import { ProductDTO } from 'src/dto/product.dto';
 
 export interface ProductServiceInterface {
+    Paginate(
+        pageOptionsDto: PageOptionsDto,
+        search: string,
+        category: number,
+    ): Promise<PageDto<ProductDTO>>;
+
     PaginateWeb(
         pageOptionsDto: PageOptionsDto,
         search: string,

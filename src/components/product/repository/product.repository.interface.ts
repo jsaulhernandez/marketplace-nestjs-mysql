@@ -7,6 +7,12 @@ import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
 export interface ProductRepositoryInterface
     extends BaseInterfaceRepository<ProductModel> {
+    Paginate(
+        pageOptionsDto: PageOptionsDto,
+        search: string,
+        category: number,
+    ): Promise<PageDto<ProductDTO>>;
+
     PaginateWeb(
         pageOptionsDto: PageOptionsDto,
         search: string,
