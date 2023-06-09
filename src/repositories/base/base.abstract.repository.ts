@@ -13,6 +13,12 @@ export abstract class BaseAbstractRepository<T> implements BaseInterfaceReposito
         return await this.entity.save(data);
     }
 
+    public async findOne(conditions: any): Promise<T> {
+        return await this.entity.findOne({
+            where: conditions,
+        });
+    }
+
     public async findOneBy(conditions: any): Promise<T> {
         return await this.entity.findOneBy(conditions);
     }
