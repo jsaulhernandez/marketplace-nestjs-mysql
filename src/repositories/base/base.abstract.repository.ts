@@ -1,4 +1,4 @@
-import { DeleteResult, FindOptionsWhere, Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { BaseInterfaceRepository } from './base.interface.repository';
 

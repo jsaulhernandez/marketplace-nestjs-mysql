@@ -2,8 +2,12 @@ import {
     Body,
     ClassSerializerInterceptor,
     Controller,
+    Delete,
     Get,
     Inject,
+    Param,
+    ParseIntPipe,
+    Patch,
     Post,
     Query,
     UseInterceptors,
@@ -45,6 +49,24 @@ export class CategoryController {
     async create(@Body() category: CategoryDTO): Promise<ResponseDTO<CategoryDTO>> {
         const result = await this.categoryService.create(category);
         return new Response<CategoryDTO>().created(result);
+    }
+
+    @Patch(':id')
+    async update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() category: CategoryDTO,
+    ): Promise<ResponseDTO<CategoryDTO>> {
+        const result = await this.categoryService.update(id, category);
+        return new Response<CategoryDTO>().ok(result);
+    }
+
+    @Delete(':id')
+    async deleteUser(
+        @Param('id', ParseIntPipe) id: number,
+    ): Promise<ResponseDTO<boolean>> {
+        const result: boolean = await this.categoryService.delete(id);
+
+        return new Response<boolean>().ok(result);
     }
 
     /**

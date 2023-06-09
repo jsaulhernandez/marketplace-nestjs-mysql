@@ -8,7 +8,11 @@ export interface CategoryServiceInterface {
         filter: string,
     ): Promise<PageDto<CategoryDTO>>;
 
+    getCategories(): Promise<CategoryDTO[]>;
+
     create(category: CategoryDTO): Promise<CategoryDTO>;
 
-    getCategories(): Promise<CategoryDTO[]>;
+    update(id: number, category: CategoryDTO): Promise<CategoryDTO>;
+
+    delete(id: number): Promise<boolean>;
 }
