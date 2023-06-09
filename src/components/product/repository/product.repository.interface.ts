@@ -1,7 +1,6 @@
 import { BaseInterfaceRepository } from 'src/repositories/base/base.interface.repository';
 
 import { ProductModel } from 'src/entities/product.entity';
-import { ProductDTO } from 'src/dto/product.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
@@ -11,7 +10,7 @@ export interface ProductRepositoryInterface
         pageOptionsDto: PageOptionsDto,
         search: string,
         category: number,
-    ): Promise<PageDto<ProductDTO>>;
+    ): Promise<PageDto<ProductModel>>;
 
     PaginateWeb(
         pageOptionsDto: PageOptionsDto,
@@ -21,5 +20,5 @@ export interface ProductRepositoryInterface
         endPrice: number,
         payMethod: number,
         withoutFilters: boolean,
-    ): Promise<PageDto<ProductDTO>>;
+    ): Promise<PageDto<ProductModel>>;
 }

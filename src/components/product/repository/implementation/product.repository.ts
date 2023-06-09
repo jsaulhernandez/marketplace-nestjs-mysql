@@ -8,7 +8,6 @@ import { BaseAbstractRepository } from 'src/repositories/base/base.abstract.repo
 import { ProductModel } from 'src/entities/product.entity';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
-import { ProductDTO } from 'src/dto/product.dto';
 import { PageMetaDto } from 'src/dto/pagination/page-meta.dto';
 
 @Injectable()
@@ -29,7 +28,7 @@ export class ProductRepository
         pageOptionsDto: PageOptionsDto,
         search: string,
         category: number,
-    ): Promise<PageDto<ProductDTO>> {
+    ): Promise<PageDto<ProductModel>> {
         const [entities, itemCount] = await this.productRepository.findAndCount({
             where: [
                 {
@@ -74,7 +73,7 @@ export class ProductRepository
         endPrice: number,
         payMethod: number,
         withoutFilters: boolean,
-    ): Promise<PageDto<ProductDTO>> {
+    ): Promise<PageDto<ProductModel>> {
         const [entities, itemCount] = await this.productRepository.findAndCount({
             where: [
                 {

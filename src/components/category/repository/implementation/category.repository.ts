@@ -30,7 +30,7 @@ export class CategoryRepository
         pageOptionsDto: PageOptionsDto,
         filter: string,
         orderBy: string = 'id',
-    ): Promise<PageDto<CategoryDTO>> {
+    ): Promise<PageDto<CategoryModel>> {
         const queryBuilder = this.categoryRepository.createQueryBuilder(this.entityName);
 
         if (filter)
