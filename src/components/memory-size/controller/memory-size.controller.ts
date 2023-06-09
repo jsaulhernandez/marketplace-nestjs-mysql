@@ -43,17 +43,17 @@ export class MemorySizeController {
     }
 
     @Post()
-    async create(@Body() category: MemorySizeDTO): Promise<ResponseDTO<MemorySizeDTO>> {
-        const result = await this.memorySizeService.create(category);
+    async create(@Body() memorySize: MemorySizeDTO): Promise<ResponseDTO<MemorySizeDTO>> {
+        const result = await this.memorySizeService.create(memorySize);
         return new Response<MemorySizeDTO>().created(result);
     }
 
     @Patch(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() category: MemorySizeDTO,
+        @Body() memorySize: MemorySizeDTO,
     ): Promise<ResponseDTO<MemorySizeDTO>> {
-        const result = await this.memorySizeService.update(id, category);
+        const result = await this.memorySizeService.update(id, memorySize);
         return new Response<MemorySizeDTO>().ok(result);
     }
 

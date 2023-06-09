@@ -43,11 +43,11 @@ export class ColorService implements ColorServiceInterface {
 
     async delete(id: number): Promise<boolean> {
         try {
-            const category: ColorDTO = await this.colorRepository.findOneBy({ id });
-            if (!category)
+            const color: ColorDTO = await this.colorRepository.findOneBy({ id });
+            if (!color)
                 throw new ErrorManager('NOT_FOUND', `Color to delete doesn't exists`);
 
-            this.colorRepository.delete(category.id);
+            this.colorRepository.delete(color.id);
 
             return true;
         } catch (error) {

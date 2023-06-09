@@ -23,11 +23,11 @@ export class MemorySizeService implements MemorySizeServiceInterface {
         return this.memorySizeRepository.Paginate(pageOptionsDto, search);
     }
 
-    async create(color: MemorySizeDTO): Promise<MemorySizeDTO> {
-        return this.memorySizeRepository.save(color);
+    async create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO> {
+        return this.memorySizeRepository.save(memorySize);
     }
 
-    async update(id: number, color: MemorySizeDTO): Promise<MemorySizeDTO> {
+    async update(id: number, memorySize: MemorySizeDTO): Promise<MemorySizeDTO> {
         try {
             const result = await this.memorySizeRepository.findOne({ id });
             if (!result)
@@ -36,9 +36,9 @@ export class MemorySizeService implements MemorySizeServiceInterface {
                     `Memory size to update doesn't exists`,
                 );
 
-            const newColor = Object.assign(result, color);
+            const newMemorySize = Object.assign(result, memorySize);
 
-            return this.memorySizeRepository.save(newColor);
+            return this.memorySizeRepository.save(newMemorySize);
         } catch (error) {
             throw ErrorManager.createSignatureError(error.message);
         }
@@ -46,16 +46,16 @@ export class MemorySizeService implements MemorySizeServiceInterface {
 
     async delete(id: number): Promise<boolean> {
         try {
-            const category: MemorySizeDTO = await this.memorySizeRepository.findOneBy({
+            const memorySize: MemorySizeDTO = await this.memorySizeRepository.findOneBy({
                 id,
             });
-            if (!category)
+            if (!memorySize)
                 throw new ErrorManager(
                     'NOT_FOUND',
                     `Memory size to delete doesn't exists`,
                 );
 
-            this.memorySizeRepository.delete(category.id);
+            this.memorySizeRepository.delete(memorySize.id);
 
             return true;
         } catch (error) {

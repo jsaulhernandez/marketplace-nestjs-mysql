@@ -8,9 +8,9 @@ export interface MemorySizeServiceInterface {
         search: string,
     ): Promise<PageDto<MemorySizeDTO>>;
 
-    create(color: MemorySizeDTO): Promise<MemorySizeDTO>;
+    create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO>;
 
-    update(id: number, color: MemorySizeDTO): Promise<MemorySizeDTO>;
+    update(id: number, memorySize: MemorySizeDTO): Promise<MemorySizeDTO>;
 
     delete(id: number): Promise<boolean>;
 }

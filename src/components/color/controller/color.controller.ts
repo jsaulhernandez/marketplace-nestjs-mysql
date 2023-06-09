@@ -44,17 +44,17 @@ export class ColorController {
     }
 
     @Post()
-    async create(@Body() category: ColorDTO): Promise<ResponseDTO<ColorDTO>> {
-        const result = await this.colorService.create(category);
+    async create(@Body() color: ColorDTO): Promise<ResponseDTO<ColorDTO>> {
+        const result = await this.colorService.create(color);
         return new Response<ColorDTO>().created(result);
     }
 
     @Patch(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() category: ColorDTO,
+        @Body() color: ColorDTO,
     ): Promise<ResponseDTO<ColorDTO>> {
-        const result = await this.colorService.update(id, category);
+        const result = await this.colorService.update(id, color);
         return new Response<ColorDTO>().ok(result);
     }
 
