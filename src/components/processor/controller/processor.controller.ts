@@ -59,9 +59,7 @@ export class ProcessorController {
     }
 
     @Delete(':id')
-    async deleteUser(
-        @Param('id', ParseIntPipe) id: number,
-    ): Promise<ResponseDTO<boolean>> {
+    async delete(@Param('id', ParseIntPipe) id: number): Promise<ResponseDTO<boolean>> {
         const result: boolean = await this.processorService.delete(id);
         return new Response<boolean>().ok(result);
     }

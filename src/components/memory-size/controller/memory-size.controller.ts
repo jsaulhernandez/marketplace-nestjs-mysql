@@ -58,9 +58,7 @@ export class MemorySizeController {
     }
 
     @Delete(':id')
-    async deleteUser(
-        @Param('id', ParseIntPipe) id: number,
-    ): Promise<ResponseDTO<boolean>> {
+    async delete(@Param('id', ParseIntPipe) id: number): Promise<ResponseDTO<boolean>> {
         const result: boolean = await this.memorySizeService.delete(id);
         return new Response<boolean>().ok(result);
     }
