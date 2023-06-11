@@ -1,14 +1,21 @@
 import {
+    Body,
     ClassSerializerInterceptor,
     Controller,
+    Delete,
     Get,
     Inject,
+    Param,
+    ParseIntPipe,
+    Patch,
+    Post,
     Query,
     UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ProductServiceInterface } from '../service/product.service.interface';
+
 import { ProductDTO } from 'src/dto/product.dto';
 
 import { ApiResponse } from 'src/common/decorators/api-response.decorator';
@@ -42,6 +49,27 @@ export class ProductController {
         );
 
         return new Response<PageDto<ProductDTO>>().ok(result);
+    }
+
+    @Post()
+    async create(@Body() product: ProductDTO): Promise<ResponseDTO<ProductDTO>> {
+        const result = await this.productService.create(product);
+        return new Response<ProductDTO>().created(result);
+    }
+
+    @Patch(':id')
+    async update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() product: ProductDTO,
+    ): Promise<ResponseDTO<ProductDTO>> {
+        const result = await this.productService.update(id, product);
+        return new Response<ProductDTO>().ok(result);
+    }
+
+    @Delete(':id')
+    async delete(@Param('id', ParseIntPipe) id: number): Promise<ResponseDTO<boolean>> {
+        const result: boolean = await this.productService.delete(id);
+        return new Response<boolean>().ok(result);
     }
 
     /**

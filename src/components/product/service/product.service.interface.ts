@@ -17,4 +17,10 @@ export interface ProductServiceInterface {
         endPrice: number,
         payMethod: number,
     ): Promise<PageDto<ProductDTO>>;
+
+    create(product: ProductDTO): Promise<ProductDTO>;
+
+    update(id: number, product: ProductDTO): Promise<ProductDTO>;
+
+    delete(id: number): Promise<boolean>;
 }
