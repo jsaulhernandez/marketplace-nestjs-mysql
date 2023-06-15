@@ -17,7 +17,7 @@ export class CategoryService implements CategoryServiceInterface {
         private categoryRepository: CategoryRepositoryInterface,
     ) {}
 
-    async Paginate(
+    Paginate(
         pageOptionsDto: PageOptionsDto,
         filter: string,
     ): Promise<PageDto<CategoryDTO>> {
@@ -26,11 +26,11 @@ export class CategoryService implements CategoryServiceInterface {
         return this.categoryRepository.Paginate(pageOptionsDto, filter);
     }
 
-    async getCategories(): Promise<CategoryDTO[]> {
+    getCategories(): Promise<CategoryDTO[]> {
         return this.categoryRepository.findByCondition({ status: 1 });
     }
 
-    async create(category: CategoryDTO): Promise<CategoryDTO> {
+    create(category: CategoryDTO): Promise<CategoryDTO> {
         return this.categoryRepository.save(category);
     }
 
@@ -48,15 +48,13 @@ export class CategoryService implements CategoryServiceInterface {
         }
     }
 
-    async delete(id: number): Promise<boolean> {
+    async delete(id: number): Promise<void> {
         try {
             const category: CategoryDTO = await this.categoryRepository.findOneBy({ id });
             if (!category)
                 throw new ErrorManager('NOT_FOUND', `Category to delete doesn't exists`);
 
-            this.categoryRepository.delete(category.id);
-
-            return true;
+            await this.categoryRepository.delete(category.id);
         } catch (error) {
             throw ErrorManager.createSignatureError(error.message);
         }

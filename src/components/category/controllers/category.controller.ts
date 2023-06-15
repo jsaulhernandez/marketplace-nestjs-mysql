@@ -10,6 +10,7 @@ import {
     Patch,
     Post,
     Query,
+    UseFilters,
     UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -25,10 +26,12 @@ import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
 import { Response } from 'src/utils/response.util';
+import { CustomExceptionFilter } from '../../../common/exceptions/CustomExceptionFilter.exception';
 
 @ApiTags('Categories')
 @Controller('category')
 @UseInterceptors(ClassSerializerInterceptor)
+@UseFilters(CustomExceptionFilter)
 export class CategoryController {
     constructor(
         @Inject('CategoryServiceInterface')
@@ -61,10 +64,9 @@ export class CategoryController {
     }
 
     @Delete(':id')
-    async delete(@Param('id', ParseIntPipe) id: number): Promise<ResponseDTO<boolean>> {
-        const result: boolean = await this.categoryService.delete(id);
-
-        return new Response<boolean>().ok(result);
+    async delete(@Param('id', ParseIntPipe) id: number): Promise<ResponseDTO<number>> {
+        await this.categoryService.delete(id);
+        return new Response<number>().ok(id);
     }
 
     /**

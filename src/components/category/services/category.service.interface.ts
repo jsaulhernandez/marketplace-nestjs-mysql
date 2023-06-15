@@ -14,5 +14,5 @@ export interface CategoryServiceInterface {
 
     update(id: number, category: CategoryDTO): Promise<CategoryDTO>;
 
-    delete(id: number): Promise<boolean>;
+    delete(id: number): Promise<void>;
 }

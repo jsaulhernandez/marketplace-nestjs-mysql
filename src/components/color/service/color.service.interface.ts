@@ -9,5 +9,5 @@ export interface ColorServiceInterface {
 
     update(id: number, color: ColorDTO): Promise<ColorDTO>;
 
-    delete(id: number): Promise<boolean>;
+    delete(id: number): Promise<void>;
 }

@@ -16,14 +16,14 @@ export class MemorySizeService implements MemorySizeServiceInterface {
         private memorySizeRepository: MemorySizeRepositoryInterface,
     ) {}
 
-    async Paginate(
+    Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
     ): Promise<PageDto<MemorySizeDTO>> {
         return this.memorySizeRepository.Paginate(pageOptionsDto, search);
     }
 
-    async create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO> {
+    create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO> {
         return this.memorySizeRepository.save(memorySize);
     }
 
@@ -44,7 +44,7 @@ export class MemorySizeService implements MemorySizeServiceInterface {
         }
     }
 
-    async delete(id: number): Promise<boolean> {
+    async delete(id: number): Promise<void> {
         try {
             const memorySize: MemorySizeDTO = await this.memorySizeRepository.findOneBy({
                 id,
@@ -56,8 +56,6 @@ export class MemorySizeService implements MemorySizeServiceInterface {
                 );
 
             this.memorySizeRepository.delete(memorySize.id);
-
-            return true;
         } catch (error) {
             throw ErrorManager.createSignatureError(error.message);
         }

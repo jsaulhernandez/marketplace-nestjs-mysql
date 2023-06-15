@@ -12,5 +12,5 @@ export interface MemorySizeServiceInterface {
 
     update(id: number, memorySize: MemorySizeDTO): Promise<MemorySizeDTO>;
 
-    delete(id: number): Promise<boolean>;
+    delete(id: number): Promise<void>;
 }

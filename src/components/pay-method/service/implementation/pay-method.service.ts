@@ -15,14 +15,14 @@ export class PayMethodService implements PayMethodServiceInterface {
         private payMethodRepository: PayMethodRepositoryInterface,
     ) {}
 
-    async Paginate(
+    Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
     ): Promise<PageDto<PayMethodDTO>> {
         return this.payMethodRepository.Paginate(pageOptionsDto, search);
     }
 
-    async create(payMethod: PayMethodDTO): Promise<PayMethodDTO> {
+    create(payMethod: PayMethodDTO): Promise<PayMethodDTO> {
         return this.payMethodRepository.save(payMethod);
     }
 
@@ -62,7 +62,7 @@ export class PayMethodService implements PayMethodServiceInterface {
         }
     }
 
-    async getPayMethods(): Promise<PayMethodDTO[]> {
+    getPayMethods(): Promise<PayMethodDTO[]> {
         return this.payMethodRepository.findByCondition({ status: 1 });
     }
 }

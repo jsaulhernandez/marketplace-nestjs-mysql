@@ -16,14 +16,11 @@ export class ColorService implements ColorServiceInterface {
         private colorRepository: ColorRepositoryInterface,
     ) {}
 
-    async Paginate(
-        pageOptionsDto: PageOptionsDto,
-        search: string,
-    ): Promise<PageDto<ColorDTO>> {
+    Paginate(pageOptionsDto: PageOptionsDto, search: string): Promise<PageDto<ColorDTO>> {
         return this.colorRepository.Paginate(pageOptionsDto, search);
     }
 
-    async create(color: ColorDTO): Promise<ColorDTO> {
+    create(color: ColorDTO): Promise<ColorDTO> {
         return this.colorRepository.save(color);
     }
 
@@ -41,15 +38,13 @@ export class ColorService implements ColorServiceInterface {
         }
     }
 
-    async delete(id: number): Promise<boolean> {
+    async delete(id: number): Promise<void> {
         try {
             const color: ColorDTO = await this.colorRepository.findOneBy({ id });
             if (!color)
                 throw new ErrorManager('NOT_FOUND', `Color to delete doesn't exists`);
 
-            this.colorRepository.delete(color.id);
-
-            return true;
+            await this.colorRepository.delete(color.id);
         } catch (error) {
             throw ErrorManager.createSignatureError(error.message);
         }

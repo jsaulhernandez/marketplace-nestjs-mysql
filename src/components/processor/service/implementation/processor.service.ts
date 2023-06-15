@@ -16,14 +16,14 @@ export class ProcessorService implements ProcessorServiceInterface {
         private processorRepository: ProcessorRepositoryInterface,
     ) {}
 
-    async Paginate(
+    Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
     ): Promise<PageDto<ProcessorDTO>> {
         return this.processorRepository.Paginate(pageOptionsDto, search);
     }
 
-    async create(processor: ProcessorDTO): Promise<ProcessorDTO> {
+    create(processor: ProcessorDTO): Promise<ProcessorDTO> {
         return this.processorRepository.save(processor);
     }
 

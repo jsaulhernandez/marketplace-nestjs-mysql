@@ -17,7 +17,7 @@ export class ProductService implements ProductServiceInterface {
         private productRepository: ProductRepositoryInterface,
     ) {}
 
-    async Paginate(
+    Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
         category: number,
@@ -27,7 +27,7 @@ export class ProductService implements ProductServiceInterface {
         return this.productRepository.Paginate(pageOptionsDto, search, category);
     }
 
-    async PaginateWeb(
+    PaginateWeb(
         pageOptionsDto: PageOptionsDto,
         search: string,
         category: number,
@@ -54,7 +54,7 @@ export class ProductService implements ProductServiceInterface {
         );
     }
 
-    async create(product: ProductDTO): Promise<ProductDTO> {
+    create(product: ProductDTO): Promise<ProductDTO> {
         return this.productRepository.save(product);
     }
 
