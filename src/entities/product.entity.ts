@@ -8,11 +8,17 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import {
+    DecimalToString,
+    DecimalTransformer,
+} from 'src/common/interceptors/decimals/decimal-transformer.interceptor';
+
 import { MemorySizeModel } from './memory-size.entity';
 import { ColorModel } from './color.entity';
 import { ProcessorModel } from './processor.entity';
 import { PayMethodModel } from './pay-method.entity';
 import { CategoryModel } from './category.entity';
+import { Transform } from 'class-transformer';
 
 @Entity({ name: 'mkp_product' })
 export class ProductModel {
@@ -26,7 +32,14 @@ export class ProductModel {
     image: string;
     @Column({ nullable: false })
     stock: number;
-    @Column({ nullable: false })
+    @Column({
+        type: 'decimal',
+        precision: 10,
+        scale: 2,
+        default: 0.0,
+        transformer: new DecimalTransformer(),
+    })
+    //@Transform(DecimalToString(), { toPlainOnly: true })
     price: number;
     @Column({ nullable: false })
     status: number;
