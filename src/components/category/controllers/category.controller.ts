@@ -26,12 +26,10 @@ import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
 import { Response } from 'src/utils/response.util';
-import { CustomExceptionFilter } from '../../../common/exceptions/CustomExceptionFilter.exception';
 
 @ApiTags('Categories')
 @Controller('category')
 @UseInterceptors(ClassSerializerInterceptor)
-@UseFilters(CustomExceptionFilter)
 export class CategoryController {
     constructor(
         @Inject('CategoryServiceInterface')
