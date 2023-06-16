@@ -58,7 +58,7 @@ export class ProductModel {
     processor: ProcessorModel[];
     @ManyToMany((type) => PaymentMethodModel, { cascade: true })
     @JoinTable()
-    payMethod: PaymentMethodModel[];
+    paymentMethod: PaymentMethodModel[];
     @ManyToOne((type) => CategoryModel, { nullable: false })
     @JoinColumn()
     category: CategoryModel;

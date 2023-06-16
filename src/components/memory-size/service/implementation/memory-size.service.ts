@@ -23,6 +23,10 @@ export class MemorySizeService implements MemorySizeServiceInterface {
         return this.memorySizeRepository.Paginate(pageOptionsDto, search);
     }
 
+    getMemorySizes(): Promise<MemorySizeDTO[]> {
+        return this.memorySizeRepository.findByCondition({ status: 1 });
+    }
+
     create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO> {
         return this.memorySizeRepository.save(memorySize);
     }

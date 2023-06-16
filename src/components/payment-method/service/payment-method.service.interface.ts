@@ -14,5 +14,5 @@ export interface PaymentMethodServiceInterface {
 
     delete(id: number): Promise<boolean>;
 
-    getPayMethods(): Promise<PayMethodDTO[]>;
+    getPaymentMethods(): Promise<PayMethodDTO[]>;
 }

@@ -62,7 +62,7 @@ export class PaymentMethodService implements PaymentMethodServiceInterface {
         }
     }
 
-    getPayMethods(): Promise<PayMethodDTO[]> {
+    getPaymentMethods(): Promise<PayMethodDTO[]> {
         return this.payMethodRepository.findByCondition({ status: 1 });
     }
 }

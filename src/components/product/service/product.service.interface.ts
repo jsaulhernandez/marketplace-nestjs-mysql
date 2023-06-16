@@ -15,7 +15,7 @@ export interface ProductServiceInterface {
         category: number,
         startPrice: number,
         endPrice: number,
-        payMethod: number,
+        paymentMethod: number,
     ): Promise<PageDto<ProductDTO>>;
 
     create(product: ProductDTO): Promise<ProductDTO>;

@@ -43,6 +43,13 @@ export class ColorController {
         return new Response<PageDto<ColorDTO>>().ok(result);
     }
 
+    @Get(`/active`)
+    @ApiResponse(ColorDTO)
+    async getActiveColors(): Promise<ResponseDTO<ColorDTO[]>> {
+        const result = await this.colorService.getColors();
+        return new Response<ColorDTO[]>().ok(result);
+    }
+
     @Post()
     async create(@Body() color: ColorDTO): Promise<ResponseDTO<ColorDTO>> {
         const result = await this.colorService.create(color);

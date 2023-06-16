@@ -5,6 +5,8 @@ import { PageDto } from 'src/dto/pagination/page.dto';
 export interface ColorServiceInterface {
     Paginate(pageOptionsDto: PageOptionsDto, search: string): Promise<PageDto<ColorDTO>>;
 
+    getColors(): Promise<ColorDTO[]>;
+
     create(color: ColorDTO): Promise<ColorDTO>;
 
     update(id: number, color: ColorDTO): Promise<ColorDTO>;

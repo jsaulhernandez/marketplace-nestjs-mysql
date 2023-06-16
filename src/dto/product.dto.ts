@@ -32,7 +32,7 @@ export class ProductDTO {
     @ApiProperty()
     processor: ProcessorDTO[];
     @ApiProperty()
-    payMethod: PayMethodDTO[];
+    paymentMethod: PayMethodDTO[];
     @ApiProperty()
     category: CategoryDTO;
 }

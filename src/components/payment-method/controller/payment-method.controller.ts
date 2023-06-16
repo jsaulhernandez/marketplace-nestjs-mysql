@@ -24,8 +24,8 @@ import { Response } from 'src/utils/response.util';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 
-@ApiTags('Pay methods')
-@Controller('pay-method')
+@ApiTags('Payment methods')
+@Controller('payment-method')
 @UseInterceptors(ClassSerializerInterceptor)
 export class PaymentMethodController {
     constructor(
@@ -41,6 +41,13 @@ export class PaymentMethodController {
     ): Promise<ResponseDTO<PageDto<PayMethodDTO>>> {
         const result = await this.payMethodService.Paginate(pageOptionsDto, search);
         return new Response<PageDto<PayMethodDTO>>().ok(result);
+    }
+
+    @Get(`/active`)
+    @ApiResponse(PayMethodDTO)
+    async getActivePaymentMethods(): Promise<ResponseDTO<PayMethodDTO[]>> {
+        const result = await this.payMethodService.getPaymentMethods();
+        return new Response<PayMethodDTO[]>().ok(result);
     }
 
     @Post()
@@ -70,7 +77,7 @@ export class PaymentMethodController {
     @Get(`/${PrefixWeb}/active`)
     @ApiResponse(PayMethodDTO)
     async getPayMethods(): Promise<ResponseDTO<PayMethodDTO[]>> {
-        const result = await this.payMethodService.getPayMethods();
+        const result = await this.payMethodService.getPaymentMethods();
         return new Response<PayMethodDTO[]>().ok(result);
     }
 }

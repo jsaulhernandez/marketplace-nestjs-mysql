@@ -83,7 +83,7 @@ export class ProductController {
         @Query('category') category: number = 0,
         @Query('startPrice') startPrice: number = 0,
         @Query('endPrice') endPrice: number = 0,
-        @Query('payMethod') payMethod: number = 0,
+        @Query('paymentMethod') paymentMethod: number = 0,
     ): Promise<ResponseDTO<PageDto<ProductDTO>>> {
         const result = await this.productService.PaginateWeb(
             pageOptionsDto,
@@ -91,7 +91,7 @@ export class ProductController {
             category,
             startPrice,
             endPrice,
-            payMethod,
+            paymentMethod,
         );
 
         return new Response<PageDto<ProductDTO>>().ok(result);

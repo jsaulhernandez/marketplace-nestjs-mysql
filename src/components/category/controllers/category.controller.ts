@@ -46,6 +46,13 @@ export class CategoryController {
         return new Response<PageDto<CategoryDTO>>().ok(result);
     }
 
+    @Get(`/active`)
+    @ApiResponse(CategoryDTO)
+    async getActiveCategories(): Promise<ResponseDTO<CategoryDTO[]>> {
+        const result = await this.categoryService.getCategories();
+        return new Response<CategoryDTO[]>().ok(result);
+    }
+
     @Post()
     async create(@Body() category: CategoryDTO): Promise<ResponseDTO<CategoryDTO>> {
         const result = await this.categoryService.create(category);

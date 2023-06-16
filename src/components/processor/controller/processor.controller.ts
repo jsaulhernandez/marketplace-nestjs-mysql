@@ -43,6 +43,13 @@ export class ProcessorController {
         return new Response<PageDto<ProcessorDTO>>().ok(result);
     }
 
+    @Get(`/active`)
+    @ApiResponse(ProcessorDTO)
+    async getActiveProcessors(): Promise<ResponseDTO<ProcessorDTO[]>> {
+        const result = await this.processorService.getProcessors();
+        return new Response<ProcessorDTO[]>().ok(result);
+    }
+
     @Post()
     async create(@Body() processor: ProcessorDTO): Promise<ResponseDTO<ProcessorDTO>> {
         const result = await this.processorService.create(processor);

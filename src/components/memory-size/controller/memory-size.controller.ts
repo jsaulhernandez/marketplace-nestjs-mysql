@@ -42,6 +42,13 @@ export class MemorySizeController {
         return new Response<PageDto<MemorySizeDTO>>().ok(result);
     }
 
+    @Get(`/active`)
+    @ApiResponse(MemorySizeDTO)
+    async getActiveMemorySizes(): Promise<ResponseDTO<MemorySizeDTO[]>> {
+        const result = await this.memorySizeService.getMemorySizes();
+        return new Response<MemorySizeDTO[]>().ok(result);
+    }
+
     @Post()
     async create(@Body() memorySize: MemorySizeDTO): Promise<ResponseDTO<MemorySizeDTO>> {
         const result = await this.memorySizeService.create(memorySize);

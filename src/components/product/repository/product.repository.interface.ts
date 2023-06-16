@@ -18,7 +18,7 @@ export interface ProductRepositoryInterface
         category: number,
         startPrice: number,
         endPrice: number,
-        payMethod: number,
+        paymentMethod: number,
         withoutFilters: boolean,
     ): Promise<PageDto<ProductModel>>;
 }

@@ -53,7 +53,7 @@ export class ProductRepository
                 memorySize: true,
                 color: true,
                 processor: true,
-                payMethod: true,
+                paymentMethod: true,
                 category: true,
             },
             skip: pageOptionsDto.skip,
@@ -71,7 +71,7 @@ export class ProductRepository
         category: number,
         startPrice: number,
         endPrice: number,
-        payMethod: number,
+        paymentMethod: number,
         withoutFilters: boolean,
     ): Promise<PageDto<ProductModel>> {
         const [entities, itemCount] = await this.productRepository.findAndCount({
@@ -98,13 +98,13 @@ export class ProductRepository
                             : Between(startPrice, endPrice),
                 },
                 {
-                    payMethod: {
+                    paymentMethod: {
                         id:
-                            payMethod === 0
+                            paymentMethod === 0
                                 ? withoutFilters && search === ''
-                                    ? MoreThan(payMethod)
-                                    : payMethod
-                                : payMethod,
+                                    ? MoreThan(paymentMethod)
+                                    : paymentMethod
+                                : paymentMethod,
                     },
                 },
             ],
@@ -112,7 +112,7 @@ export class ProductRepository
                 memorySize: { id: true, value: true },
                 color: { id: true, value: true },
                 processor: { id: true, name: true },
-                payMethod: { id: true, name: true },
+                paymentMethod: { id: true, name: true },
                 category: { name: true },
             },
             order: { id: pageOptionsDto.order },
@@ -120,7 +120,7 @@ export class ProductRepository
                 memorySize: true,
                 color: true,
                 processor: true,
-                payMethod: true,
+                paymentMethod: true,
                 category: true,
             },
             skip: pageOptionsDto.skip,

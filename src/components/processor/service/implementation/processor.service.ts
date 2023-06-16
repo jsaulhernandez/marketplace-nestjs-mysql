@@ -23,6 +23,10 @@ export class ProcessorService implements ProcessorServiceInterface {
         return this.processorRepository.Paginate(pageOptionsDto, search);
     }
 
+    getProcessors(): Promise<ProcessorDTO[]> {
+        return this.processorRepository.findByCondition({ status: 1 });
+    }
+
     create(processor: ProcessorDTO): Promise<ProcessorDTO> {
         return this.processorRepository.save(processor);
     }

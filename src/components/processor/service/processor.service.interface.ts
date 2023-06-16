@@ -9,6 +9,8 @@ export interface ProcessorServiceInterface {
         search: string,
     ): Promise<PageDto<ProcessorDTO>>;
 
+    getProcessors(): Promise<ProcessorDTO[]>;
+
     create(processor: ProcessorDTO): Promise<ProcessorDTO>;
 
     update(id: number, processor: ProcessorDTO): Promise<ProcessorDTO>;

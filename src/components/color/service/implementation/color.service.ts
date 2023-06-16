@@ -20,6 +20,10 @@ export class ColorService implements ColorServiceInterface {
         return this.colorRepository.Paginate(pageOptionsDto, search);
     }
 
+    getColors(): Promise<ColorDTO[]> {
+        return this.colorRepository.findByCondition({ status: 1 });
+    }
+
     create(color: ColorDTO): Promise<ColorDTO> {
         return this.colorRepository.save(color);
     }

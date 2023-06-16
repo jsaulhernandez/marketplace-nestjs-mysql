@@ -33,15 +33,15 @@ export class ProductService implements ProductServiceInterface {
         category: number,
         startPrice: number,
         endPrice: number,
-        payMethod: number,
+        paymentMethod: number,
     ): Promise<PageDto<ProductDTO>> {
         category = cleanFilterNumber(category);
         startPrice = cleanFilterNumber(startPrice);
         endPrice = cleanFilterNumber(endPrice);
-        payMethod = cleanFilterNumber(payMethod);
+        paymentMethod = cleanFilterNumber(paymentMethod);
 
         const withoutFilters: boolean =
-            category !== 0 || (startPrice !== 0 && endPrice !== 0) || payMethod !== 0;
+            category !== 0 || (startPrice !== 0 && endPrice !== 0) || paymentMethod !== 0;
 
         return this.productRepository.PaginateWeb(
             pageOptionsDto,
@@ -49,7 +49,7 @@ export class ProductService implements ProductServiceInterface {
             category,
             startPrice,
             endPrice,
-            payMethod,
+            paymentMethod,
             !withoutFilters,
         );
     }

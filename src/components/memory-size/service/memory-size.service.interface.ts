@@ -8,6 +8,8 @@ export interface MemorySizeServiceInterface {
         search: string,
     ): Promise<PageDto<MemorySizeDTO>>;
 
+    getMemorySizes(): Promise<MemorySizeDTO[]>;
+
     create(memorySize: MemorySizeDTO): Promise<MemorySizeDTO>;
 
     update(id: number, memorySize: MemorySizeDTO): Promise<MemorySizeDTO>;
