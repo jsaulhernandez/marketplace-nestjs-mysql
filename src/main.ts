@@ -27,11 +27,12 @@ async function bootstrap() {
     setupSwagger(app);
 
     console.log(
-        'listen',
+        'listen=',
         configService.get('port'),
-        'host',
+        'host=',
         configService.get('host'),
-        process.env.NODE_ENV,
+        'env=',
+        'env.' + process.env.NODE_ENV,
     );
     await app.listen(configService.get('port'), configService.get('host'));
     console.log(`Application running on: ${await app.getUrl()}`);

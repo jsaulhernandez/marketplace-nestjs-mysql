@@ -43,9 +43,9 @@ export class ProductModel {
     price: number;
     @Column({ nullable: false })
     status: number;
-    @Column({ nullable: false })
+    @Column({ nullable: false, length: 3000 })
     detail: string;
-    @Column({ nullable: false })
+    @Column({ nullable: false, length: 3000 })
     specification: string;
     @ManyToMany((type) => MemorySizeModel, { cascade: true })
     @JoinTable()
