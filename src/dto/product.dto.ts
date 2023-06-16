@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { MemorySizeDTO } from './memory-size.dto';
 import { ColorDTO } from './color.dto';
 import { ProcessorDTO } from './processor.dto';
-import { PayMethodDTO } from './pay-method.dto';
+import { PayMethodDTO } from './payment-method.dto';
 import { CategoryDTO } from './category.dto';
 
 export class ProductDTO {

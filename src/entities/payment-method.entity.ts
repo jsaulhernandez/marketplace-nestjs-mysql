@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'mkp_pay_method' })
-export class PayMethodModel {
+@Entity({ name: 'mkp_payment_method' })
+export class PaymentMethodModel {
     @PrimaryGeneratedColumn()
     id: number;
     @Column({ nullable: false })

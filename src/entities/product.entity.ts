@@ -16,7 +16,7 @@ import {
 import { MemorySizeModel } from './memory-size.entity';
 import { ColorModel } from './color.entity';
 import { ProcessorModel } from './processor.entity';
-import { PayMethodModel } from './pay-method.entity';
+import { PaymentMethodModel } from './payment-method.entity';
 import { CategoryModel } from './category.entity';
 import { Transform } from 'class-transformer';
 
@@ -56,9 +56,9 @@ export class ProductModel {
     @ManyToMany((type) => ProcessorModel, { cascade: true })
     @JoinTable()
     processor: ProcessorModel[];
-    @ManyToMany((type) => PayMethodModel, { cascade: true })
+    @ManyToMany((type) => PaymentMethodModel, { cascade: true })
     @JoinTable()
-    payMethod: PayMethodModel[];
+    payMethod: PaymentMethodModel[];
     @ManyToOne((type) => CategoryModel, { nullable: false })
     @JoinColumn()
     category: CategoryModel;

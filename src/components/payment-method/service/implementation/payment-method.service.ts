@@ -1,18 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { PayMethodServiceInterface } from '../pay-method.service.interface';
-import { PayMethodRepositoryInterface } from '../../repository/pay-method.repository.interface';
+import { PaymentMethodServiceInterface } from '../payment-method.service.interface';
+import { PaymentMethodRepositoryInterface } from '../../repository/payment-method.repository.interface';
 
-import { PayMethodDTO } from 'src/dto/pay-method.dto';
+import { PayMethodDTO } from 'src/dto/payment-method.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { ErrorManager } from 'src/common/exceptions/ErrorManager.exception';
 
 @Injectable()
-export class PayMethodService implements PayMethodServiceInterface {
+export class PaymentMethodService implements PaymentMethodServiceInterface {
     constructor(
-        @Inject('PayMethodRepositoryInterface')
-        private payMethodRepository: PayMethodRepositoryInterface,
+        @Inject('PaymentMethodRepositoryInterface')
+        private payMethodRepository: PaymentMethodRepositoryInterface,
     ) {}
 
     Paginate(

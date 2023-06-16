@@ -10,7 +10,7 @@ import { AppService } from './app.service';
 import { TypeOrmConfig } from './database/config/orm.config';
 import { CategoryModule } from './components/category/category.module';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
-import { PayMethodModule } from './components/pay-method/pay-method.module';
+import { PaymentMethodModule } from './components/pay-method/payment-method.module';
 import { ColorModule } from './components/color/color.module';
 import { MemorySizeModule } from './components/memory-size/memory-size.module';
 import { ProcessorModule } from './components/processor/processor.module';
@@ -30,7 +30,7 @@ import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter
             inject: [ConfigService],
         }),
         CategoryModule,
-        PayMethodModule,
+        PaymentMethodModule,
         ColorModule,
         MemorySizeModule,
         ProcessorModule,

@@ -1,8 +1,8 @@
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
-import { PayMethodDTO } from 'src/dto/pay-method.dto';
+import { PayMethodDTO } from 'src/dto/payment-method.dto';
 
-export interface PayMethodServiceInterface {
+export interface PaymentMethodServiceInterface {
     Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
