@@ -10,7 +10,7 @@ import { AppService } from './app.service';
 import { TypeOrmConfig } from './database/config/orm.config';
 import { CategoryModule } from './components/category/category.module';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
-import { PaymentMethodModule } from './components/pay-method/payment-method.module';
+import { PaymentMethodModule } from './components/payment-method/payment-method.module';
 import { ColorModule } from './components/color/color.module';
 import { MemorySizeModule } from './components/memory-size/memory-size.module';
 import { ProcessorModule } from './components/processor/processor.module';
