@@ -8,6 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmConfig } from './database/config/orm.config';
+
 import { CategoryModule } from './components/category/category.module';
 //import { TransformInterceptor } from './common/interceptors/transform/transform.interceptor';
 import { PaymentMethodModule } from './components/payment-method/payment-method.module';
@@ -15,6 +16,8 @@ import { ColorModule } from './components/color/color.module';
 import { MemorySizeModule } from './components/memory-size/memory-size.module';
 import { ProcessorModule } from './components/processor/processor.module';
 import { ProductModule } from './components/product/product.module';
+import { SaleModule } from './components/sale/sale.module';
+
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter.exception';
 
 @Module({
@@ -35,6 +38,7 @@ import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter
         MemorySizeModule,
         ProcessorModule,
         ProductModule,
+        SaleModule,
     ],
     controllers: [AppController],
     providers: [
