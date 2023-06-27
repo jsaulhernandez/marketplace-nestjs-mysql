@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PayMethodDTO {
+export class PaymentMethodDTO {
     @ApiProperty()
     id: number;
     @ApiProperty()

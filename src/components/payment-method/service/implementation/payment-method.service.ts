@@ -3,9 +3,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PaymentMethodServiceInterface } from '../payment-method.service.interface';
 import { PaymentMethodRepositoryInterface } from '../../repository/payment-method.repository.interface';
 
-import { PayMethodDTO } from 'src/dto/payment-method.dto';
+import { PaymentMethodDTO } from 'src/dto/payment-method.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
+
 import { ErrorManager } from 'src/common/exceptions/ErrorManager.exception';
 
 @Injectable()
@@ -18,15 +19,15 @@ export class PaymentMethodService implements PaymentMethodServiceInterface {
     Paginate(
         pageOptionsDto: PageOptionsDto,
         search: string,
-    ): Promise<PageDto<PayMethodDTO>> {
+    ): Promise<PageDto<PaymentMethodDTO>> {
         return this.payMethodRepository.Paginate(pageOptionsDto, search);
     }
 
-    create(payMethod: PayMethodDTO): Promise<PayMethodDTO> {
+    create(payMethod: PaymentMethodDTO): Promise<PaymentMethodDTO> {
         return this.payMethodRepository.save(payMethod);
     }
 
-    async update(id: number, payMethod: PayMethodDTO): Promise<PayMethodDTO> {
+    async update(id: number, payMethod: PaymentMethodDTO): Promise<PaymentMethodDTO> {
         try {
             const result = await this.payMethodRepository.findOne({ id });
             if (!result)
@@ -45,7 +46,7 @@ export class PaymentMethodService implements PaymentMethodServiceInterface {
 
     async delete(id: number): Promise<boolean> {
         try {
-            const payMethod: PayMethodDTO = await this.payMethodRepository.findOneBy({
+            const payMethod: PaymentMethodDTO = await this.payMethodRepository.findOneBy({
                 id,
             });
             if (!payMethod)
@@ -62,7 +63,7 @@ export class PaymentMethodService implements PaymentMethodServiceInterface {
         }
     }
 
-    getPaymentMethods(): Promise<PayMethodDTO[]> {
+    getPaymentMethods(): Promise<PaymentMethodDTO[]> {
         return this.payMethodRepository.findByCondition({ status: 1 });
     }
 }

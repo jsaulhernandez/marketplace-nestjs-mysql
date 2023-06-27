@@ -17,9 +17,12 @@ import { ApiTags } from '@nestjs/swagger';
 import { PaymentMethodServiceInterface } from '../service/payment-method.service.interface';
 
 import { PrefixWeb } from 'src/common/const';
-import { PayMethodDTO } from 'src/dto/payment-method.dto';
+
+import { PaymentMethodDTO } from 'src/dto/payment-method.dto';
 import { ResponseDTO } from 'src/dto/response/response.dto';
+
 import { ApiResponse } from 'src/common/decorators/api-response.decorator';
+
 import { Response } from 'src/utils/response.util';
 import { PageDto } from 'src/dto/pagination/page.dto';
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
@@ -34,35 +37,37 @@ export class PaymentMethodController {
     ) {}
 
     @Get()
-    @ApiResponse(PayMethodDTO, PageDto)
+    @ApiResponse(PaymentMethodDTO, PageDto)
     async Paginate(
         @Query() pageOptionsDto: PageOptionsDto,
         @Query('search') search: string = '',
-    ): Promise<ResponseDTO<PageDto<PayMethodDTO>>> {
+    ): Promise<ResponseDTO<PageDto<PaymentMethodDTO>>> {
         const result = await this.payMethodService.Paginate(pageOptionsDto, search);
-        return new Response<PageDto<PayMethodDTO>>().ok(result);
+        return new Response<PageDto<PaymentMethodDTO>>().ok(result);
     }
 
     @Get(`/active`)
-    @ApiResponse(PayMethodDTO)
-    async getActivePaymentMethods(): Promise<ResponseDTO<PayMethodDTO[]>> {
+    @ApiResponse(PaymentMethodDTO)
+    async getActivePaymentMethods(): Promise<ResponseDTO<PaymentMethodDTO[]>> {
         const result = await this.payMethodService.getPaymentMethods();
-        return new Response<PayMethodDTO[]>().ok(result);
+        return new Response<PaymentMethodDTO[]>().ok(result);
     }
 
     @Post()
-    async create(@Body() payMethod: PayMethodDTO): Promise<ResponseDTO<PayMethodDTO>> {
+    async create(
+        @Body() payMethod: PaymentMethodDTO,
+    ): Promise<ResponseDTO<PaymentMethodDTO>> {
         const result = await this.payMethodService.create(payMethod);
-        return new Response<PayMethodDTO>().created(result);
+        return new Response<PaymentMethodDTO>().created(result);
     }
 
     @Patch(':id')
     async update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() payMethod: PayMethodDTO,
-    ): Promise<ResponseDTO<PayMethodDTO>> {
+        @Body() payMethod: PaymentMethodDTO,
+    ): Promise<ResponseDTO<PaymentMethodDTO>> {
         const result = await this.payMethodService.update(id, payMethod);
-        return new Response<PayMethodDTO>().ok(result);
+        return new Response<PaymentMethodDTO>().ok(result);
     }
 
     @Delete(':id')
@@ -75,9 +80,9 @@ export class PaymentMethodController {
      * EP WEB
      */
     @Get(`/${PrefixWeb}/active`)
-    @ApiResponse(PayMethodDTO)
-    async getPayMethods(): Promise<ResponseDTO<PayMethodDTO[]>> {
+    @ApiResponse(PaymentMethodDTO)
+    async getPayMethods(): Promise<ResponseDTO<PaymentMethodDTO[]>> {
         const result = await this.payMethodService.getPaymentMethods();
-        return new Response<PayMethodDTO[]>().ok(result);
+        return new Response<PaymentMethodDTO[]>().ok(result);
     }
 }
