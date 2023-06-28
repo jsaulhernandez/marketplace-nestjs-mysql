@@ -9,6 +9,7 @@ import {
 
 import { PaymentMethodModel } from './payment-method.entity';
 import { SaleDetailModel } from './sale-detail.entity';
+import { UserModel } from './user.entity';
 
 @Entity({ name: 'mkp_sale_header' })
 export class SaleHeaderModel {
@@ -21,8 +22,11 @@ export class SaleHeaderModel {
     @ManyToOne((type) => PaymentMethodModel, { nullable: false })
     @JoinColumn()
     paymentMethod: PaymentMethodModel;
-    @Column({ nullable: false })
-    user: string;
-    @OneToMany((type) => SaleDetailModel, (detail) => detail.saleHeader)
+    @ManyToOne((type) => UserModel, { nullable: false })
+    @JoinColumn()
+    user: UserModel;
+    @OneToMany((type) => SaleDetailModel, (detail) => detail.saleHeader, {
+        cascade: ['insert', 'update'],
+    })
     detail: SaleDetailModel[];
 }

@@ -4,7 +4,7 @@ import { ProductModel } from './product.entity';
 import { ColorModel } from './color.entity';
 import { MemorySizeModel } from './memory-size.entity';
 import { ProcessorModel } from './processor.entity';
-import { SaleHeaderModel } from './sale.entity';
+import { SaleHeaderModel } from './sale-header.entity';
 
 import { DecimalTransformer } from 'src/common/interceptors/decimals/decimal-transformer.interceptor';
 
