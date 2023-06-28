@@ -17,6 +17,8 @@ export class CustomerDTO {
     @ApiProperty()
     typeDocument: TypeDocumentDTO;
     @ApiProperty()
+    document: string;
+    @ApiProperty()
     phone: string;
     @ApiProperty()
     terms: number;

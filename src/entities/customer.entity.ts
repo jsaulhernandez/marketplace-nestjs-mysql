@@ -20,6 +20,8 @@ export class CustomerModel {
     @JoinColumn()
     typeDocument: TypeDocumentModel;
     @Column({ nullable: true })
+    document: string;
+    @Column({ nullable: true })
     phone: string;
     @Column({ nullable: false })
     terms: number;
