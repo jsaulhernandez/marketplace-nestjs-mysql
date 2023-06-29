@@ -16,6 +16,7 @@ import { ColorModule } from './components/color/color.module';
 import { MemorySizeModule } from './components/memory-size/memory-size.module';
 import { ProcessorModule } from './components/processor/processor.module';
 import { ProductModule } from './components/product/product.module';
+import { TypeDocumentModule } from './components/type-document/type-document.module';
 import { SaleModule } from './components/sale/sale.module';
 
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter.exception';
@@ -39,6 +40,7 @@ import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter
         ProcessorModule,
         ProductModule,
         SaleModule,
+        TypeDocumentModule,
     ],
     controllers: [AppController],
     providers: [
