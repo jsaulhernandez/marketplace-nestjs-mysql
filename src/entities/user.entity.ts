@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { CustomerModel } from './customer.entity';
 import { UserStatus } from './enums/enums';
 
@@ -18,12 +25,12 @@ export class UserModel {
     })
     status: UserStatus;
     @Column({ nullable: false })
-    createdAt: number;
+    createdAt: string;
     @Column({ nullable: false })
-    updatedAt: number;
+    updatedAt: string;
     @Column({ nullable: true })
     verifiedEmail: number;
-    @ManyToOne((type) => CustomerModel, { nullable: false })
+    @OneToOne((type) => CustomerModel, (customer) => customer.user, { nullable: false })
     @JoinColumn()
     customer: CustomerModel;
 }

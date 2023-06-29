@@ -18,6 +18,7 @@ import { ProcessorModule } from './components/processor/processor.module';
 import { ProductModule } from './components/product/product.module';
 import { TypeDocumentModule } from './components/type-document/type-document.module';
 import { SaleModule } from './components/sale/sale.module';
+import { CustomerModule } from './components/customer/customer.module';
 
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter.exception';
 
@@ -41,6 +42,7 @@ import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter
         ProductModule,
         SaleModule,
         TypeDocumentModule,
+        CustomerModule,
     ],
     controllers: [AppController],
     providers: [

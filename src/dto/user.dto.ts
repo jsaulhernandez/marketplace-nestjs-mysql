@@ -20,9 +20,9 @@ export class UserDTO {
     @IsEnum(UserStatus)
     status: UserStatus;
     @ApiProperty()
-    createdAt: number;
+    createdAt: string;
     @ApiProperty()
-    updatedAt: number;
+    updatedAt: string;
     @ApiProperty()
     verifiedEmail: number;
     @ApiProperty()
