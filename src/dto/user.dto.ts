@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum } from 'class-validator';
 
 import { UserStatus } from 'src/entities/enums/enums';
@@ -11,7 +11,12 @@ export class UserDTO {
     email: string;
     @ApiProperty()
     password: string;
-    @ApiPropertyOptional({ enum: UserStatus, default: UserStatus.ACTIVE })
+    @ApiProperty({
+        description: 'User status list',
+        isArray: true,
+        enum: UserStatus,
+        example: Object.keys(UserStatus),
+    })
     @IsEnum(UserStatus)
     status: UserStatus;
     @ApiProperty()
