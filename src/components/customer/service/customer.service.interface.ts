@@ -8,4 +8,6 @@ export interface CustomerServiceInterface {
         pageOptionsDto: PageOptionsDto,
         search: string,
     ): Promise<PageDto<CustomerDTO>>;
+
+    existDocument(document: string): Promise<boolean>;
 }

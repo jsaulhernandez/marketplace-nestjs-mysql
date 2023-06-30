@@ -8,6 +8,8 @@ import { PageDto } from 'src/dto/pagination/page.dto';
 
 import { CustomerDTO } from 'src/dto/customer.dto';
 
+import { ErrorManager } from 'src/common/exceptions/ErrorManager.exception';
+
 @Injectable()
 export class CustomerService implements CustomerServiceInterface {
     constructor(
@@ -20,5 +22,19 @@ export class CustomerService implements CustomerServiceInterface {
         search: string,
     ): Promise<PageDto<CustomerDTO>> {
         return this.customerRepository.Paginate(pageOptionsDto, search);
+    }
+
+    async existDocument(document: string): Promise<boolean> {
+        try {
+            const result = await this.customerRepository.findOneBy({
+                document,
+            });
+
+            if (!result) return false;
+
+            return true;
+        } catch (error) {
+            throw ErrorManager.createSignatureError(error.message);
+        }
     }
 }

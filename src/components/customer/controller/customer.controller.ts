@@ -19,6 +19,8 @@ import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { ResponseDTO } from 'src/dto/response/response.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
 
+import { PrefixWeb } from 'src/common/const';
+
 @ApiTags('Customers')
 @Controller('customer')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -37,5 +39,16 @@ export class CustomerController {
         const result = await this.customerService.Paginate(pageOptionsDto, search);
 
         return new Response<PageDto<CustomerDTO>>().ok(result);
+    }
+
+    /**
+     * EP WEB
+     */
+    @Get(`/${PrefixWeb}/exists-document`)
+    async existsCustomerDocument(
+        @Query('document') document: string,
+    ): Promise<ResponseDTO<boolean>> {
+        const result: boolean = await this.customerService.existDocument(document);
+        return new Response<boolean>().ok(result);
     }
 }
