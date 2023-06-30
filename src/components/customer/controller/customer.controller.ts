@@ -51,4 +51,10 @@ export class CustomerController {
         const result: boolean = await this.customerService.existDocument(document);
         return new Response<boolean>().ok(result);
     }
+
+    @Get(`/${PrefixWeb}/exists-email`)
+    async existsUserEmail(@Query('email') email: string): Promise<ResponseDTO<boolean>> {
+        const result: boolean = await this.customerService.existEmail(email);
+        return new Response<boolean>().ok(result);
+    }
 }

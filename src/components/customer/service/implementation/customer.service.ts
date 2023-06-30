@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { CustomerServiceInterface } from '../customer.service.interface';
 import { CustomerRepositoryInterface } from '../../repository/customer.repository.interface';
+import { UserRepositoryInterface } from '../../repository/user.repository.interface';
 
 import { PageOptionsDto } from 'src/dto/pagination/page-options.dto';
 import { PageDto } from 'src/dto/pagination/page.dto';
@@ -15,6 +16,8 @@ export class CustomerService implements CustomerServiceInterface {
     constructor(
         @Inject('CustomerRepositoryInterface')
         private customerRepository: CustomerRepositoryInterface,
+        @Inject('UserRepositoryInterface')
+        private userRepository: UserRepositoryInterface,
     ) {}
 
     Paginate(
@@ -28,6 +31,23 @@ export class CustomerService implements CustomerServiceInterface {
         try {
             const result = await this.customerRepository.findOneBy({
                 document,
+            });
+
+            if (!result) return false;
+
+            return true;
+        } catch (error) {
+            throw ErrorManager.createSignatureError(error.message);
+        }
+    }
+
+    /*
+     * Method's for users
+     */
+    async existEmail(email: string): Promise<boolean> {
+        try {
+            const result = await this.userRepository.findOneBy({
+                email,
             });
 
             if (!result) return false;

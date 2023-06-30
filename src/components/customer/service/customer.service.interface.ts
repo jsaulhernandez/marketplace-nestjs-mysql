@@ -10,4 +10,6 @@ export interface CustomerServiceInterface {
     ): Promise<PageDto<CustomerDTO>>;
 
     existDocument(document: string): Promise<boolean>;
+
+    existEmail(email: string): Promise<boolean>;
 }
